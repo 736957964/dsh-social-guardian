@@ -25,5 +25,12 @@
   },
   "homepage": "https://github.com/736957964/dsh-social-guardian#readme",
   "dependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "bin": {
+    "dsh-guardian-ui": "bin/start.js"
+  },
+  "scripts": {
+    "start": "node bin/start.js",
+    "dev": "node server.js"
+  }
 }
