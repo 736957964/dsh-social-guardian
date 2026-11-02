@@ -47,6 +47,39 @@ const server = http.createServer((req, res) => {
 
   // API 路由
   if (pathname.startsWith('/api/')) {
+    if (pathname === '/api/config/identity') {
+      const cfgFile = path.join(STATE_DIR, 'guardian-identity.json');
+      if (req.method === 'GET') {
+        const data = readJsonSafe(cfgFile, { ownerId: '736957964', ownerTitle: '管理员', botNickname: '大肥鱼' });
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify(data));
+        return;
+      }
+      if (req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', () => {
+          try {
+            const data = JSON.parse(body);
+            writeJsonSafe(cfgFile, data);
+            
+            // 同时热同步到 qq-bridge 运行态配置与提示词切片
+            const v2File = path.join(STATE_DIR, 'social-v2.json');
+            const v2Data = readJsonSafe(v2File, {});
+            v2Data.customIdentity = data;
+            writeJsonSafe(v2File, v2Data);
+
+            res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ ok: true, data }));
+          } catch (e) {
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ ok: false, error: e.message }));
+          }
+        });
+        return;
+      }
+    }
+
     if (pathname === '/api/memory-paths') {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify(MEMORY_PATHS));

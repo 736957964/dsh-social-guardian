@@ -13,6 +13,7 @@
     .sidebar-btn:not(.active) { border-left: 3px solid transparent; color: #94a3b8; }
     .sidebar-btn:not(.active):hover { background: rgba(255, 255, 255, 0.04); color: #f1f5f9; }
     .json-code { font-family: Consolas, Menlo, Monaco, "Courier New", monospace; }
+  input, textarea { color: #f8fafc !important; background-color: #0f172a !important; border-color: #334155 !important; }
   </style>
 </head>
 <body class="flex h-screen overflow-hidden">
@@ -96,23 +97,23 @@
           <h3 class="text-sm font-bold text-white flex items-center space-x-2">
             <span>👑</span><span>最高特权管理员 (Owner / 老爹) 与角色配置</span>
           </h3>
-          <p class="text-xs text-gray-400">定义机器人的最高特权用户（默认称呼“老爹/主人/管理员”），拥有100好感锁死、1.8倍记忆权威度与系统最高指令控制权。</p>
+          <p class="text-xs text-gray-400">定义机器人的最高特权用户（默认称呼“管理员/主人”），拥有100好感锁死、1.8倍记忆权威度与系统最高指令控制权。</p>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
             <div class="space-y-1">
               <label class="text-xs text-gray-300">最高特权账号 (QQ号 / 用户ID)</label>
-              <input type="text" id="ownerId" value="736957964" class="w-full px-3 py-2 bg-gray-950 border border-gray-700 rounded-lg text-xs text-pink-400 font-mono focus:outline-none focus:border-pink-500">
+              <input type="text" id="ownerId" value="736957964" class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-xs text-pink-300 font-mono focus:outline-none focus:border-pink-500 focus:bg-black">
             </div>
             <div class="space-y-1">
-              <label class="text-xs text-gray-300">专属尊称 (默认: 老爹)</label>
-              <input type="text" id="ownerTitle" value="老爹" class="w-full px-3 py-2 bg-gray-950 border border-gray-700 rounded-lg text-xs text-white focus:outline-none focus:border-pink-500">
+              <label class="text-xs text-gray-300">专属尊称 (默认: 管理员)</label>
+              <input type="text" id="ownerTitle" value="管理员" class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-xs text-gray-100 focus:outline-none focus:border-pink-500 focus:bg-black">
             </div>
             <div class="space-y-1">
-              <label class="text-xs text-gray-300">机器人自称 (默认: 小鲸鱼)</label>
-              <input type="text" id="botNickname" value="小鲸鱼" class="w-full px-3 py-2 bg-gray-950 border border-gray-700 rounded-lg text-xs text-white focus:outline-none focus:border-pink-500">
+              <label class="text-xs text-gray-300">机器人自称 (默认: 大肥鱼)</label>
+              <input type="text" id="botNickname" value="大肥鱼" class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-xs text-gray-100 focus:outline-none focus:border-pink-500 focus:bg-black">
             </div>
           </div>
           <div class="flex justify-end pt-2">
-            <button onclick="alert('✅ 特权管理员与角色配置已生效！全新使用者只需在此修改即可一键替换为自己的身份。')" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white rounded-lg text-xs font-bold shadow">
+            <button onclick="saveIdentity()" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white rounded-lg text-xs font-bold shadow">
               保存特权与角色设定
             </button>
           </div>
@@ -312,7 +313,7 @@ app.use((req, res, next) => {
         }
       });
       if (tabId === 'memory-paths') loadMemoryPaths();
-      if (tabId === 'members') loadMembers();
+      if (tabId === 'members') loadMembers(); loadIdentity();
     }
 
     async function loadMemoryPaths() {
@@ -392,7 +393,7 @@ app.use((req, res, next) => {
         const d = await res.json();
         if (d.ok) {
           alert('✅ 好感度修改成功并已直接写入磁盘！');
-          loadMembers();
+          loadMembers(); loadIdentity();
         }
       } catch (e) {
         alert('修改失败: ' + e.message);
@@ -426,7 +427,7 @@ app.use((req, res, next) => {
     }
 
     // 初始加载
-    loadMembers();
+    loadMembers(); loadIdentity();
   </script>
 </body>
 </html>
