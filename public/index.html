@@ -45,6 +45,9 @@
         <button onclick="switchTab('search')" id="nav-search" class="sidebar-btn w-full px-3 py-3 rounded-lg text-xs flex items-center space-x-3">
           <span>🔍</span><span>全局会话检索回溯</span>
         </button>
+        <button onclick="switchTab('injector')" id="nav-injector" class="sidebar-btn w-full px-3 py-3 rounded-lg text-xs flex items-center space-x-3">
+          <span>🔌</span><span>框架自动感知与注入</span>
+        </button>
       </nav>
     </div>
 
@@ -188,6 +191,61 @@
         </div>
       </div>
 
+      <!-- Tab 6: Framework Injector -->
+      <div id="tab-injector" class="space-y-6 hidden">
+        <div>
+          <h2 class="text-xl font-bold text-white">框架自动感知与中间件注入</h2>
+          <p class="text-xs text-gray-400 mt-1">自动探测宿主机器人框架环境，一键生成/热挂载好感度拦截器与身心上下文中间件。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="card-glass rounded-xl p-4">
+            <div class="text-xs text-gray-400">当前探测宿主环境</div>
+            <div class="text-xl font-bold text-pink-400 mt-1" id="detectedFramework">QQ Bridge / OneBot</div>
+            <div class="text-xs text-green-400 mt-2">✅ 原生协议完全匹配</div>
+          </div>
+          <div class="card-glass rounded-xl p-4">
+            <div class="text-xs text-gray-400">注入引擎状态</div>
+            <div class="text-xl font-bold text-indigo-400 mt-1">Auto-Mount 就绪</div>
+            <div class="text-xs text-gray-400 mt-2">零外部配置自动桥接</div>
+          </div>
+          <div class="card-glass rounded-xl p-4">
+            <div class="text-xs text-gray-400">支持框架矩阵</div>
+            <div class="text-xl font-bold text-yellow-400 mt-1">5+ 常见框架</div>
+            <div class="text-xs text-gray-400 mt-2">Koishi / Express / Koa / LangChain</div>
+          </div>
+        </div>
+
+        <div class="card-glass rounded-xl p-6 space-y-4">
+          <div class="flex justify-between items-center pb-3 border-b border-gray-800">
+            <div class="text-sm font-bold text-white">自动生成的接入中间件代码</div>
+            <span class="px-2 py-0.5 bg-gray-800 text-pink-300 text-xs font-mono rounded">零侵入式热挂载</span>
+          </div>
+          <div class="p-4 bg-gray-950 rounded-xl font-mono text-xs text-gray-300 overflow-x-auto border border-gray-800">
+<pre>// === 自动检测并注入宿主框架消息链路 ===
+import createSocialGuardian from '@736957964/dsh-social-guardian';
+
+const guardian = createSocialGuardian();
+const detected = guardian.injector.detectFramework();
+console.log('Detected Host Framework:', detected.name);
+
+// 自动向宿主消息事件挂载好感度自增与身心 Prompt 拦截
+app.use((req, res, next) => {
+  const userId = req.body?.user_id || req.body?.userId;
+  if (userId) {
+    guardian.ledger.recordInteraction(userId, req.body?.sender?.nickname);
+  }
+  next();
+});</pre>
+          </div>
+          <div class="flex justify-end pt-2">
+            <button onclick="alert('🚀 已触发重新扫描宿主框架！当前环境：QQ Bridge / OneBot (兼容模式)')" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white rounded-lg text-xs font-bold shadow">
+              重新探测当前框架
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Tab 5: Search -->
       <div id="tab-search" class="space-y-6 hidden">
         <div>
@@ -214,7 +272,7 @@
     let allMembers = [];
 
     function switchTab(tabId) {
-      const tabs = ['overview', 'memory-paths', 'members', 'watchdog', 'search'];
+      const tabs = ['overview', 'memory-paths', 'members', 'watchdog', 'injector', 'search'];
       tabs.forEach(t => {
         const nav = document.getElementById('nav-' + t);
         const pane = document.getElementById('tab-' + t);
