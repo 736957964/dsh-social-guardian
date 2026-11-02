@@ -1,0 +1,29 @@
+{
+  "name": "@736957964/dsh-social-guardian",
+  "version": "1.0.0",
+  "description": "工业级 AI Agent 仿真社交、拟真情绪、好感度账本与运行时看门狗 Skill 插件 (带专业 Web 面板)",
+  "main": "src/index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/736957964/dsh-social-guardian.git"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "skill",
+    "social-agent",
+    "emotion-state",
+    "watchdog",
+    "affection",
+    "onebot"
+  ],
+  "author": "736957964 <736957964@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/736957964/dsh-social-guardian/issues"
+  },
+  "homepage": "https://github.com/736957964/dsh-social-guardian#readme",
+  "dependencies": {},
+  "peerDependencies": {}
+}

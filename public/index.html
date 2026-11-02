@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSH Social Guardian - 情绪与社交守护者控制台</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    .card-glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .neon-border { border: 1px solid rgba(236, 72, 153, 0.3); box-shadow: 0 0 15px rgba(236, 72, 153, 0.15); }
+  </style>
+</head>
+<body class="p-6">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <header class="flex justify-between items-center pb-6 border-b border-gray-800">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg">🐾</div>
+        <div>
+          <h1 class="text-2xl font-black tracking-wide text-white">DSH Social Guardian 控制台</h1>
+          <p class="text-xs text-gray-400">工业级 AI Agent 仿真情绪系统 · 好感度记账本 · 运行时看门狗守护中心</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-900 text-green-300">
+          ● 运行正常
+        </span>
+        <span class="text-xs text-gray-500">v1.0.0</span>
+      </div>
+    </header>
+
+    <!-- Top Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="card-glass rounded-xl p-4">
+        <div class="text-xs text-gray-400">当前心情指数</div>
+        <div class="text-3xl font-extrabold text-pink-400 mt-1" id="currentMood">86 <span class="text-sm font-normal text-gray-400">/ 100</span></div>
+        <div class="text-xs text-green-400 mt-2">✨ 元气满满 · 正常作息中</div>
+      </div>
+      <div class="card-glass rounded-xl p-4">
+        <div class="text-xs text-gray-400">记录群友档案</div>
+        <div class="text-3xl font-extrabold text-indigo-400 mt-1" id="totalMembers">142 <span class="text-sm font-normal text-gray-400">位</span></div>
+        <div class="text-xs text-gray-400 mt-2">包含群友昵称、互动与印象</div>
+      </div>
+      <div class="card-glass rounded-xl p-4">
+        <div class="text-xs text-gray-400">看门狗状态</div>
+        <div class="text-3xl font-extrabold text-yellow-400 mt-1">180s <span class="text-sm font-normal text-gray-400">熔断</span></div>
+        <div class="text-xs text-green-400 mt-2">0 僵尸锁 · 防死锁正常</div>
+      </div>
+      <div class="card-glass rounded-xl p-4">
+        <div class="text-xs text-gray-400">全局记忆审计</div>
+        <div class="text-3xl font-extrabold text-blue-400 mt-1">在线 <span class="text-sm font-normal text-gray-400">SQLite/JSON</span></div>
+        <div class="text-xs text-gray-400 mt-2">支持全量历史检索与修改回溯</div>
+      </div>
+    </div>
+
+    <!-- Main Tabs -->
+    <div class="card-glass rounded-2xl p-6 neon-border space-y-6">
+      <div class="flex space-x-4 border-b border-gray-800 pb-3">
+        <button class="text-sm font-bold text-pink-400 border-b-2 border-pink-400 pb-2">身心作息参数</button>
+        <button class="text-sm font-bold text-gray-400 hover:text-white pb-2">好感度规则</button>
+        <button class="text-sm font-bold text-gray-400 hover:text-white pb-2">看门狗运维</button>
+        <button class="text-sm font-bold text-gray-400 hover:text-white pb-2">全局记忆搜索</button>
+      </div>
+
+      <!-- Tab 1: Emotion Settings -->
+      <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-3">
+            <label class="block text-xs font-semibold text-gray-300">白天基准心情 (7:00 - 23:00)</label>
+            <input type="range" min="0" max="100" value="86" class="w-full accent-pink-500">
+            <div class="flex justify-between text-xs text-gray-400"><span>0 (冷漠)</span><span class="text-pink-400 font-bold">86 (元气满满)</span><span>100 (亢奋)</span></div>
+          </div>
+          <div class="space-y-3">
+            <label class="block text-xs font-semibold text-gray-300">深夜微困心情 (23:00 - 7:00)</label>
+            <input type="range" min="0" max="100" value="70" class="w-full accent-indigo-500">
+            <div class="flex justify-between text-xs text-gray-400"><span>0 (沉睡)</span><span class="text-indigo-400 font-bold">70 (打哈欠/慢吞吞)</span><span>100 (清醒)</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-end">
+          <button class="px-5 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white rounded-lg text-sm font-bold shadow-lg transition">
+            保存配置 (实时热生效)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Documentation Card -->
+    <div class="card-glass rounded-xl p-5 space-y-3">
+      <h3 class="text-base font-bold text-white flex items-center space-x-2">
+        <span>📖</span><span>开箱即用快速指南</span>
+      </h3>
+      <p class="text-xs text-gray-300 leading-relaxed">
+        本模块作为标准 DSH Skill 插件运作，支持零外部配置运行。首次挂载后将自动在目标环境创建所需持久化 Schema 与自愈看门狗守护，并通过 Web 客户端插件无缝注入图形化界面。
+      </p>
+      <div class="p-3 bg-gray-900 rounded-lg text-xs font-mono text-pink-300">
+        npm install @736957964/dsh-social-guardian
+      </div>
+    </div>
+  </div>
+</body>
+</html>
