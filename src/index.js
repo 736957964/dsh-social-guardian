@@ -25,7 +25,7 @@ export default function createSocialGuardianSkill(config = {}) {
   const injector = new FrameworkAutoInjector({ projectRoot: config.projectRoot || process.cwd() });
 
   return {
-    name: '@736957964/dsh-social-guardian',
+    name: 'dsh-social-guardian',
     version: '1.0.0',
     emotion,
     ledger,

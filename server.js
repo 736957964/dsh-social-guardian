@@ -50,7 +50,7 @@ const server = http.createServer((req, res) => {
     if (pathname === '/api/config/identity') {
       const cfgFile = path.join(STATE_DIR, 'guardian-identity.json');
       if (req.method === 'GET') {
-        const data = readJsonSafe(cfgFile, { ownerId: '736957964', ownerTitle: '管理员', botNickname: '大肥鱼' });
+        const data = readJsonSafe(cfgFile, { ownerId: 'YOUR_QQ_NUMBER', ownerTitle: '管理员', botNickname: '大肥鱼' });
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify(data));
         return;

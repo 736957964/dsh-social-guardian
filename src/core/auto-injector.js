@@ -33,7 +33,7 @@ export class FrameworkAutoInjector {
       case 'express':
         return `
 // === [DSH Social Guardian Auto-Injected Middleware] ===
-import createSocialGuardian from '@736957964/dsh-social-guardian';
+import createSocialGuardian from 'dsh-social-guardian';
 const guardian = createSocialGuardian();
 app.use((req, res, next) => {
   if (req.body && (req.body.user_id || req.body.userId)) {
@@ -58,7 +58,7 @@ export function apply(ctx) {
       default:
         return `
 // === [DSH Social Guardian Universal Adapter] ===
-import createSocialGuardian from '@736957964/dsh-social-guardian';
+import createSocialGuardian from 'dsh-social-guardian';
 export const guardian = createSocialGuardian();
 `;
     }

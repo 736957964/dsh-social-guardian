@@ -101,7 +101,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
             <div class="space-y-1">
               <label class="text-xs text-gray-300">最高特权账号 (QQ号 / 用户ID)</label>
-              <input type="text" id="ownerId" value="736957964" class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-xs text-pink-300 font-mono focus:outline-none focus:border-pink-500 focus:bg-black">
+              <input type="text" id="ownerId" value="YOUR_QQ_NUMBER" class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-xs text-pink-300 font-mono focus:outline-none focus:border-pink-500 focus:bg-black">
             </div>
             <div class="space-y-1">
               <label class="text-xs text-gray-300">专属尊称 (默认: 管理员)</label>
@@ -250,7 +250,7 @@
           </div>
           <div class="p-4 bg-gray-950 rounded-xl font-mono text-xs text-gray-300 overflow-x-auto border border-gray-800">
 <pre>// === 自动检测并注入宿主框架消息链路 ===
-import createSocialGuardian from '@736957964/dsh-social-guardian';
+import createSocialGuardian from 'dsh-social-guardian';
 
 const guardian = createSocialGuardian();
 const detected = guardian.injector.detectFramework();

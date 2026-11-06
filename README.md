@@ -18,10 +18,10 @@
 在 DeepSeek Harness 终端中直接运行：
 ```bash
 # 安装到 Web 宿主
-dsh plugin --profile web add github:736957964/dsh-social-guardian
+dsh plugin --profile web add github:dsh-community/dsh-social-guardian
 
 # 或安装到 Headless 宿主
-dsh plugin --profile headless add github:736957964/dsh-social-guardian
+dsh plugin --profile headless add github:dsh-community/dsh-social-guardian
 ```
 
 ### 方式 2：纯 Skill 引入 (零代码)
@@ -55,7 +55,7 @@ cp SKILL.md ~/.dsh/skills/qqbot-whale-social/
 新用户只需在项目根目录提供以下标准配置即可开箱即用：
 ```json
 {
-  "ownerQQ": "736957964",
+  "ownerQQ": "YOUR_QQ_NUMBER",
   "socialV2": {
     "enabled": true,
     "wakeConfig": {
@@ -97,17 +97,17 @@ cp SKILL.md ~/.dsh/skills/qqbot-whale-social/
 ## 安装
 
 ```bash
-npm install @736957964/dsh-social-guardian
+npm install dsh-social-guardian
 ```
 
 ## 使用
 
 ```js
-import createSocialGuardianSkill from '@736957964/dsh-social-guardian';
+import createSocialGuardianSkill from 'dsh-social-guardian';
 
 const skill = createSocialGuardianSkill({
   stateDir: './state',
-  ownerQq: '736957964',
+  ownerQq: 'YOUR_QQ_NUMBER',
   emotion: {
     daytimeMood: 86,
     nightMood: 70
